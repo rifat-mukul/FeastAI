@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Feast AI{% endblock %}
+
+{% block content %}
+<!-- Search Section -->
+<div class="search-container">
+    <h2>Order Food from Your Favorite Restaurants</h2>
+    <form action="/" method="GET">
+        <!-- Search Input -->
+        <div class="form-row mb-3">
+            <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Search for food or restaurant..." 
+                name="search" 
+                value="{{ search }}"
+                id="search-input"
+                onfocus="this.placeholder = ''"
+                onblur="this.placeholder = 'Search for food or restaurant...'"
+            >
+        </div>
+
+        <!-- Location Dropdown -->
+        <div class="form-row mb-3">
+            <select 
+                class="form-select" 
+                name="location" 
+                id="location-select" 
+                required
+            >
+                <option selected disabled value="None">Select Your Location</option>
+                {% for loc, url in locations.items() %}
+                    <option value="{{ loc }}" {% if loc == location %} selected {% endif %}>{{ loc|capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Search Button -->
+        <div class="form-row">
+            <button type="submit" class="btn btn-success w-100">Search</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

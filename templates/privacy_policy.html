@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy - Feast AI{% endblock %}
+
+{% block content %}
+<div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+</div>
+
+<div class="legal-page-bg py-5">
+    <div class="container">
+        <div class="text-center mb-5 pb-4">
+            <span class="badge bg-soft-orange text-orange px-3 py-2 rounded-pill mb-3 uppercase tracking-wider">Legal Transparency</span>
+            <h1 class="display-4 fw-bold mb-3">Privacy <span class="text-gradient">Policy</span></h1>
+            <p class="text-muted mx-auto lead" style="max-width: 650px;">
+                Your data privacy is the secret ingredient to our recipe for success. Here’s how we protect your information at Feast AI.
+            </p>
+            <div class="d-flex align-items-center justify-content-center gap-3 mt-4">
+                <div class="small text-muted"><i class="far fa-calendar-alt me-2"></i>Updated Jan 2026</div>
+                <div class="vr"></div>
+                <div class="small text-muted"><i class="far fa-clock me-2"></i>5 min read</div>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-top" style="top: 40px;">
+                    <div class="sidebar-card p-4">
+                        <h6 class="fw-bold text-dark small text-uppercase mb-4">On this page</h6>
+                        <nav id="policy-nav" class="nav flex-column gap-2">
+                            <a class="nav-link active" href="#intro">01. Introduction</a>
+                            <a class="nav-link" href="#collection">02. Data Collection</a>
+                            <a class="nav-link" href="#data-use">03. Usage & Analytics</a>
+                            <a class="nav-link" href="#security">04. Safety Measures</a>
+                            <a class="nav-link" href="#third-party">05. Third Parties</a>
+                        </nav>
+                        <hr class="my-4">
+                        <p class="small text-muted">Have questions? <br><a href="mailto:privacy@feastai.com" class="text-orange text-decoration-none">Contact Privacy Team</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="content-wrapper">
+                    
+                    <section id="intro" class="policy-card mb-4">
+                        <div class="d-flex gap-4">
+                            <div class="icon-box"><i class="fas fa-handshake"></i></div>
+                            <div>
+                                <h3 class="fw-bold mb-3">Introduction</h3>
+                                <div class="tldr-badge mb-3">TL;DR: We respect your privacy and only collect what we need.</div>
+                                <p>At Feast AI, we are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, and safeguard your personal information. By using our platform, you agree to the terms outlined in this document.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="collection" class="policy-card mb-4">
+                        <div class="d-flex gap-4">
+                            <div class="icon-box"><i class="fas fa-fingerprint"></i></div>
+                            <div>
+                                <h3 class="fw-bold mb-3">Information Collection</h3>
+                                <p>We collect personal information to provide a personalized dining experience. This includes:</p>
+                                <div class="row g-3 mt-1">
+                                    <div class="col-md-4">
+                                        <div class="data-item">
+                                            <i class="fas fa-id-card mb-2"></i>
+                                            <h6>Identity</h6>
+                                            <span>Name & Username</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="data-item">
+                                            <i class="fas fa-envelope mb-2"></i>
+                                            <h6>Contact</h6>
+                                            <span>Email & Phone</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="data-item">
+                                            <i class="fas fa-credit-card mb-2"></i>
+                                            <h6>Payment</h6>
+                                            <span>Secure Billing</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="data-use" class="policy-card mb-4">
+                        <div class="d-flex gap-4">
+                            <div class="icon-box"><i class="fas fa-magic"></i></div>
+                            <div>
+                                <h3 class="fw-bold mb-3">Data Use</h3>
+                                <p>Your data is used to process orders and improve our recommendations. We use AI to analyze trends—never to sell your identity.</p>
+                                <div class="alert alert-info border-0 bg-soft-blue small">
+                                    <strong>Pro Tip:</strong> You can opt-out of personalized marketing in your Account Settings.
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="security" class="policy-card mb-4">
+                        <div class="d-flex gap-4">
+                            <div class="icon-box"><i class="fas fa-shield-halved"></i></div>
+                            <div>
+                                <h3 class="fw-bold mb-3">Data Security</h3>
+                                <p>We implement industry-standard security measures, including <strong>AES-256 encryption</strong> and secure data storage protocols.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+
+                <div class="mt-5 d-flex justify-content-between align-items-center">
+                    <a href="{{ url_for('home') }}" class="btn btn-link text-muted text-decoration-none px-0">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Home
+                    </a>
+                    <button class="btn btn-orange rounded-pill px-4 shadow-sm" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --primary-orange: #ff7a00;
+        --secondary-blue: #007bff;
+        --soft-orange: #fff3e6;
+        --soft-blue: #eef6ff;
+        --text-dark: #2d3436;
+        --text-grey: #636e72;
+    }
+
+    body { background-color: #fcfcfd; font-family: 'Inter', sans-serif; }
+
+    /* Progress Bar */
+    .progress-container { position: fixed; top: 0; z-index: 1000; width: 100%; height: 4px; background: transparent; }
+    .progress-bar { height: 4px; background: var(--primary-orange); width: 0%; }
+
+    /* Typography */
+    .text-gradient {
+        background: linear-gradient(45deg, #ff7a00, #ffb347);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Cards & Layout */
+    .policy-card {
+        background: white;
+        border-radius: 24px;
+        padding: 40px;
+        border: 1px solid rgba(0,0,0,0.03);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .policy-card:hover {
+        box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+        transform: translateY(-2px);
+    }
+
+    .sidebar-card {
+        background: white;
+        border-radius: 20px;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* Icon Styling */
+    .icon-box {
+        min-width: 60px;
+        height: 60px;
+        background: var(--soft-orange);
+        color: var(--primary-orange);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        font-size: 1.5rem;
+    }
+
+    /* TL;DR & Alerts */
+    .tldr-badge {
+        background: var(--soft-orange);
+        color: #d35400;
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    .bg-soft-blue { background-color: var(--soft-blue); color: #0056b3; }
+
+    /* Data Item Grid */
+    .data-item {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 16px;
+        text-align: center;
+        border: 1px solid transparent;
+        transition: 0.2s;
+    }
+    .data-item:hover { border-color: var(--primary-orange); background: white; }
+    .data-item h6 { margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+    .data-item span { font-size: 0.8rem; color: var(--text-grey); }
+
+    /* Nav Links */
+    #policy-nav .nav-link {
+        color: var(--text-grey);
+        font-weight: 500;
+        border-radius: 10px;
+        transition: 0.3s;
+    }
+    #policy-nav .nav-link:hover, #policy-nav .nav-link.active {
+        color: var(--primary-orange);
+        background: var(--soft-orange);
+        padding-left: 20px;
+    }
+
+    .btn-orange { background: var(--primary-orange); color: white; border: none; }
+    .btn-orange:hover { background: #e66e00; color: white; }
+
+    @media (max-width: 768px) {
+        .policy-card { padding: 25px; }
+        .icon-box { display: none; } /* Hide icons on mobile for space */
+    }
+</style>
+
+<script>
+// Simple Scroll Progress Script
+window.onscroll = function() {myFunction()};
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
+{% endblock %}

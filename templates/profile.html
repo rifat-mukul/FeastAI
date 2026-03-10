@@ -1,0 +1,445 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Feast AI{% endblock %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    :root {
+        --primary-orange: #FF6B00;
+        --deep-navy: #0A0F1C;
+        --slate-gray: #64748B;
+        --aura-glow: rgba(255, 107, 0, 0.15);
+        --glass-panel: rgba(255, 255, 255, 0.75);
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .feast-main-wrapper {
+        background: radial-gradient(circle at top right, #fff5ec, #f8fafc);
+        min-height: 100vh;
+        width: 100%;
+        position: relative;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Floating Aura Effects */
+    .aura-blur {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: var(--aura-glow);
+        filter: blur(140px);
+        z-index: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    .container { position: relative; z-index: 1; }
+
+    /* The "Digital Identity Pass" - Enhanced Depth */
+    .identity-pass {
+        background: linear-gradient(145deg, #0f172a 0%, #020617 100%);
+        border-radius: 40px;
+        padding: 45px 35px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .identity-pass::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+        opacity: 0.03;
+        pointer-events: none;
+    }
+
+    .avatar-container {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: var(--primary-orange);
+        margin: 0 auto 25px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        transform: rotate(-4deg);
+        transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .identity-pass:hover .avatar-container {
+        transform: rotate(0deg) scale(1.1);
+        box-shadow: 0 20px 40px rgba(255, 107, 0, 0.2);
+    }
+
+    .status-badge {
+        background: rgba(255, 107, 0, 0.1);
+        border: 1px solid rgba(255, 107, 0, 0.4);
+        color: #ff9d52;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        padding: 8px 20px;
+        border-radius: 100px;
+        font-weight: 800;
+        backdrop-filter: blur(5px);
+    }
+
+    /* Typography Upgrades */
+    .greeting-title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 800;
+        font-size: 3.5rem;
+        letter-spacing: -2px;
+        line-height: 1;
+    }
+
+    .name-gradient {
+        background: linear-gradient(90deg, #FF6B00, #FFB800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+    }
+
+    .subtitle-text {
+        font-size: 1.25rem;
+        color: var(--slate-gray);
+        font-weight: 500;
+    }
+
+    /* Restaurant Card - Modern Bento Style */
+    .res-card-premium {
+        background: var(--glass-panel);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: 35px;
+        padding: 20px;
+        transition: all 0.4s ease;
+        height: 100%;
+    }
+
+    .res-card-premium:hover {
+        background: white;
+        transform: translateY(-12px);
+        box-shadow: 0 40px 90px rgba(255, 107, 0, 0.1);
+        border-color: var(--primary-orange);
+    }
+
+    .res-visual-header {
+        height: 160px;
+        background: #f8fafc;
+        border-radius: 25px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .res-visual-header::before {
+        content: '';
+        position: absolute;
+        width: 150%; height: 150%;
+        background: radial-gradient(circle, rgba(255,107,0,0.05) 0%, transparent 70%);
+    }
+
+    .rating-tag {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--deep-navy);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 13px;
+        z-index: 2;
+    }
+
+    /* Form Section - "Discovery Hub" */
+    .discovery-box {
+        background: white;
+        border-radius: 45px;
+        padding: 50px;
+        box-shadow: 0 30px 100px rgba(0,0,0,0.04);
+        border: 1px solid #f0f0f0;
+    }
+
+    .mode-toggle-bar {
+        background: #f1f5f9;
+        padding: 8px;
+        border-radius: 24px;
+        display: inline-flex;
+        margin-bottom: 40px;
+    }
+
+    .toggle-tab {
+        padding: 12px 30px;
+        border-radius: 18px;
+        font-weight: 700;
+        font-size: 14px;
+        transition: 0.3s;
+        border: none;
+        background: transparent;
+        color: var(--slate-gray);
+    }
+
+    .toggle-tab.active {
+        background: white;
+        color: var(--primary-orange);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .btn-action-main {
+        background: linear-gradient(135deg, #FF6B00 0%, #FF9100 100%);
+        color: white;
+        border: none;
+        padding: 22px;
+        border-radius: 25px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        width: 100%;
+        box-shadow: 0 20px 40px rgba(255, 107, 0, 0.25);
+        transition: 0.4s;
+    }
+
+    .btn-action-main:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 25px 50px rgba(255, 107, 0, 0.4);
+    }
+
+    .input-wrapper input, .input-wrapper select, .input-wrapper textarea {
+        width: 100%;
+        padding: 18px 25px;
+        border-radius: 22px;
+        border: 2px solid #f1f5f9;
+        background: #fcfcfc;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .input-wrapper input:focus {
+        border-color: var(--primary-orange);
+        background: white;
+        box-shadow: 0 0 0 5px rgba(255, 107, 0, 0.05);
+    }
+
+    .hover-premium-exit:hover {
+        opacity: 1 !important;
+        color: var(--primary-orange) !important;
+        transform: translateY(-1px);
+        text-shadow: 0 0 15px rgba(255, 107, 0, 0.4);
+    }
+</style>
+
+<div class="feast-main-wrapper">
+    <div class="aura-blur" style="top: -100px; right: -100px;"></div>
+    <div class="aura-blur" style="bottom: 50px; left: -100px; background: rgba(0, 89, 255, 0.06);"></div>
+
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="identity-pass sticky-top" style="top: 30px;">
+                    <div class="text-center">
+                        <div class="avatar-container">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <span class="status-badge mb-3 d-inline-block">Elite Member</span>
+                        <h3 class="fw-800 mb-1" style="font-size: 1.8rem;">{{ user[0] }} {{ user[1] }}</h3>
+                        <p class="opacity-50 small mb-4">{{ user[2] }}</p>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-top border-secondary border-opacity-25">
+                        <div class="d-flex justify-content-between mb-3 align-items-center">
+                            <span class="opacity-40 small text-uppercase fw-bold" style="letter-spacing: 1px;">Access Level</span>
+                            <span class="fw-bold" style="color: #FFB800;">Premium Elite</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="opacity-40 small text-uppercase fw-bold" style="letter-spacing: 1px;">Contact</span>
+                            <span class="fw-bold">{{ user[3] }}</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-3 border-top border-secondary border-opacity-10">
+                        <a href="{{ url_for('logout') }}" 
+                        class="btn btn-link text-white text-decoration-none opacity-40 small w-100 p-0 transition-all d-flex align-items-center justify-content-center hover-premium-exit"
+                        style="letter-spacing: 1.5px; font-weight: 700;">
+                            <i class="fas fa-power-off me-2" style="font-size: 0.8rem;"></i>
+                            <span class="text-uppercase">Conclude Exploration</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="mb-5 pb-2">
+                    <h1 class="greeting-title mb-2">
+                        Bon Appétit, <br>
+                        <span class="name-gradient">{{ user[0] }}!</span>
+                    </h1>
+                    <p class="subtitle-text">
+                        <i class="fas fa-wand-magic-sparkles text-orange me-2"></i>
+                        Our AI has engineered your perfect dining itinerary.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-800 m-0" style="font-size: 1.4rem;">Top Picks for You</h5>
+                        <div class="small fw-800 text-success d-flex align-items-center px-3 py-2 bg-white rounded-pill shadow-sm">
+                            <span class="status-dot-pulse me-2"></span> AI Concierge Active
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        {% if top_restaurants %}
+                            {% for restaurant in top_restaurants %}
+                            <div class="col-md-6">
+                                <div class="res-card-premium">
+                                    <div class="res-visual-header">
+                                        <span class="rating-tag">
+                                            <i class="fas fa-star text-warning me-1"></i> {{ restaurant.similarity|round(2) }}
+                                        </span>
+                                        <i class="fas fa-utensils text-muted opacity-20" style="font-size: 4rem;"></i>
+                                    </div>
+                                    <div class="px-2">
+                                        <h6 class="fw-800 text-dark mb-1" style="font-size: 1.2rem;">{{ restaurant.name }}</h6>
+                                        <p class="text-muted small mb-4">
+                                            <i class="fas fa-location-arrow me-1 text-orange"></i> {{ restaurant.distance|round(2) }} km away
+                                        </p>
+                                        <a href="{{ restaurant.map_url }}" target="_blank" class="btn btn-dark w-100 rounded-pill fw-bold py-3">
+                                            Open in Maps <i class="fas fa-external-link-alt ms-1 small"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="col-12 text-center py-5 bg-white rounded-5 shadow-sm border border-dashed">
+                                <i class="fas fa-cookie-bite fa-3x text-muted opacity-20 mb-3"></i>
+                                <h5 class="text-muted fw-bold">Setting the Table...</h5>
+                                <p class="small text-muted">Update your cravings below to see results.</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="discovery-box">
+                    <div class="text-center">
+                        <h4 class="fw-800 mb-4" style="font-size: 1.8rem;">Refine Your Cravings</h4>
+                        <div class="mode-toggle-bar">
+                            <button type="button" onclick="setMode('selection')" id="btn-selection" class="toggle-tab active">Quick Filters</button>
+                            <button type="button" onclick="setMode('writing')" id="btn-writing" class="toggle-tab">AI Mood Search</button>
+                        </div>
+                    </div>
+
+                    <form method="POST" id="main-preference-form" class="row g-4">
+                        <div class="col-12">
+                            <label class="small fw-800 text-uppercase text-muted mb-2 d-block" style="letter-spacing: 1px;">Google Maps Location</label>
+                            <div class="input-wrapper">
+                                <input type="url" name="map_url" placeholder="Paste your Google Maps link..." required value="{{ request.form['map_url'] if request.form.get('map_url') else '' }}">
+                            </div>
+                        </div>
+
+                        <div id="selection-inputs" class="row g-4 m-0 p-0">
+                            <div class="col-md-6">
+                                <label class="small fw-800 text-uppercase text-muted mb-2 d-block" style="letter-spacing: 1px;">Cuisine</label>
+                                <div class="input-wrapper">
+                                    <select name="food_type" id="food_type_select">
+                                        <option value="">What are you craving?</option>
+                                        {% for pref in available_preferences %}
+                                            <option value="{{ pref[0] }}" {% if pref[0] == request.form['food_type'] %}selected{% endif %}>{{ pref[1] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small fw-800 text-uppercase text-muted mb-2 d-block" style="letter-spacing: 1px;">Max Wait</label>
+                                <div class="input-wrapper">
+                                    <select name="preferable_time" id="time_select">
+                                        <option value="">Time Limit</option>
+                                        <option value="0">Flexible</option>
+                                        <option value="30">30 Minutes</option>
+                                        <option value="60">1 Hour</option>
+                                        <option value="90">1.5 Hour</option>
+                                        <option value="120">2 Hours</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="writing-inputs" class="col-12 d-none">
+                            <label class="small fw-800 text-uppercase text-muted mb-2 d-block">Describe the Vibe</label>
+                            <div class="input-wrapper">
+                                <textarea name="user_note" id="user_note_input" rows="3" placeholder="e.g., 'I want a rooftop burger spot with live music'"></textarea>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="submission_mode" id="submission_mode" value="selection">
+
+                        <div class="col-12 mt-5">
+                            <button type="submit" class="btn-action-main">Generate Recommendations</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function setMode(mode) {
+    const selectionDiv = document.getElementById('selection-inputs');
+    const writingDiv = document.getElementById('writing-inputs');
+    const btnSelection = document.getElementById('btn-selection');
+    const btnWriting = document.getElementById('btn-writing');
+    const modeInput = document.getElementById('submission_mode');
+
+    const foodSelect = document.getElementById('food_type_select');
+    const timeSelect = document.getElementById('time_select');
+    const noteInput = document.getElementById('user_note_input');
+
+    modeInput.value = mode;
+
+    if (mode === 'selection') {
+        selectionDiv.classList.remove('d-none');
+        writingDiv.classList.add('d-none');
+        btnSelection.classList.add('active');
+        btnWriting.classList.remove('active');
+        
+        foodSelect.disabled = false;
+        foodSelect.required = true;
+        timeSelect.disabled = false;
+        timeSelect.required = true;
+        noteInput.disabled = true;
+    } else {
+        selectionDiv.classList.add('d-none');
+        writingDiv.classList.remove('d-none');
+        btnSelection.classList.remove('active');
+        btnWriting.classList.add('active');
+        
+        noteInput.disabled = false;
+        noteInput.required = true;
+        foodSelect.disabled = true;
+        timeSelect.disabled = true;
+    }
+}
+</script>
+{% endblock %}

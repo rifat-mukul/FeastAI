@@ -1,0 +1,120 @@
+/* Flexbox container to align both columns */
+.preferences-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Space between the two columns */
+    flex-wrap: wrap; /* Allow items to wrap if necessary */
+}
+
+/* Style for Available Preferences and Your Selected Preferences */
+.preferences-box {
+    border-radius: 8px; /* Rounded corners on all sides */
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100%;
+    position: relative;
+    margin-bottom: 20px; /* Space between boxes */
+}
+
+/* Specific rounded bottom corners */
+.preferences-box:last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Make sure the buttons and text align properly */
+.list-group-item {
+    border: none;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0; /* Light hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure Add and Remove buttons are aligned correctly */
+.form-inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Round the buttons */
+.btn {
+    border-radius: 50%!important;  /* Force round shape with !important */
+    padding: 10px 20px !important;  /* Add padding */
+    min-width: 40px !important; /* Set a minimum width */
+    height: 40px !important; /* Height equal to width for perfect circle */
+    width: 40px !important;  /* Set width explicitly for circular shape */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    font-size: 14px;  /* Adjust text size for small buttons */
+}
+
+/* For small buttons (smaller circular buttons) */
+.btn-sm {
+    border-radius: 50% !important;  /* Ensure circular shape */
+    width: 30px !important; /* Set smaller width */
+    height: 30px !important; /* Same height as width */
+    padding: 5px !important; /* Adjust padding for small buttons */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    font-size: 12px; /* Adjust text size */
+}
+
+/* Add responsiveness to layout */
+@media (max-width: 767px) {
+    .preferences-container {
+        flex-direction: column; /* Stack the columns on smaller screens */
+    }
+
+    .col-md-6 {
+        flex: 0 0 100%; /* Stack the columns on smaller screens */
+        max-width: 100%;
+    }
+}
+body {
+    background: linear-gradient(135deg, #f2f2f2, #fff);
+}
+
+
+/* Update these variables in your existing <style> tag */
+:root {
+    /* For "Fresh & Healthy" Variation */
+    --bg-color: #F0F4F4;
+    --card-bg: #ffffff;
+    --accent-color: #00A896; 
+    --text-main: #2d3436;
+}
+
+.find-restaurants-page {
+    background-color: var(--bg-color) !important;
+}
+
+.restaurant-card {
+    background: var(--card-bg) !important;
+}
+
+.text-orange, .rating-badge {
+    color: var(--accent-color) !important;
+}
+
+.btn-view-map:hover {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+}

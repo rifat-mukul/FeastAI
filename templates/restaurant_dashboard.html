@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Restaurant Dashboard - Feast AI{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome to Your Restaurant Dashboard</h2>
+
+    <!-- Restaurant Info Box (Hoverable) -->
+    <div class="card shadow-sm hoverable-card mb-4">
+        <div class="card-body text-center">
+            <h5 class="card-title">Restaurant Name: Sample Restaurant</h5>
+            <p class="card-text"><strong>Cuisine:</strong> International</p>
+            <p class="card-text"><strong>Contact:</strong> (555) 123-4567</p>
+            <p class="card-text"><strong>Location:</strong> Dhaka, Bangladesh</p>
+            <p class="card-text"><strong>Reviews:</strong> 120</p>
+            <p class="card-text"><strong>Owner:</strong> John Doe</p>
+            <p class="card-text"><em>Short Description: A place for delicious and fresh international cuisine.</em></p>
+        </div>
+    </div>
+
+    <!-- Menu Items Section -->
+    <h3>Menu Items</h3>
+    {% if menu_items %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in menu_items %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>${{ item[1] }}</td>
+                        <td>
+                            <form action="/remove_item" method="POST" style="display:inline;">
+                                <input type="hidden" name="item_name" value="{{ item[0] }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No menu items available. <a href="{{ url_for('add_item') }}">Add your first item.</a></p>
+    {% endif %}
+
+    <!-- Logout Button -->
+    <form action="{{ url_for('logout') }}" method="POST" class="mt-4">
+        <button type="submit" class="btn btn-danger w-100">Logout</button>
+    </form>
+</div>
+{% endblock %}

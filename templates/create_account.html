@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account - Feast AI{% endblock %}
+
+{% block content %}
+<div class="auth-page-bg d-flex align-items-center justify-content-center">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold h1"><span class="text-white bg-orange px-2 rounded-3">Join</span> Feast AI</h2>
+                    <p class="text-muted mt-3 fw-medium">Start your journey to the best food in Dhaka.</p>
+                </div>
+
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div class="alert alert-danger border-0 shadow-sm rounded-4 mb-4 small animate-fade-in">
+                      <ul class="mb-0 ps-3">
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                {% endwith %}
+
+                <div class="card auth-card border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <form action="/create_account" method="POST">
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-6">
+                                    <label for="first_name" class="form-label label-custom">First Name</label>
+                                    <input required type="text" class="form-control signup-input" id="first_name" name="first_name" placeholder="John">
+                                </div>
+                                <div class="col-6">
+                                    <label for="last_name" class="form-label label-custom">Last Name</label>
+                                    <input required type="text" class="form-control signup-input" id="last_name" name="last_name" placeholder="Doe">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email" class="form-label label-custom">Email Address</label>
+                                <div class="input-group-custom">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input required type="email" class="form-control signup-input" id="email" name="email" placeholder="john@example.com">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="phone" class="form-label label-custom">Phone Number</label>
+                                <div class="input-group-custom">
+                                    <i class="fas fa-phone-alt input-icon"></i>
+                                    <input required type="tel" class="form-control signup-input" id="phone" name="phone" placeholder="+880 1XXX-XXXXXX">
+                                </div>
+                            </div>
+
+                            <!-- Password Field with Toggle Option -->
+                            <div class="mb-4">
+                                <label for="password" class="form-label label-custom">Secure Password</label>
+                                <div class="input-group-custom">
+                                    <i class="fas fa-lock input-icon"></i>
+                                    <input required type="text" class="form-control signup-input" id="password" name="password" placeholder="••••••••">
+                                    <!-- Toggle icon -->
+                                    <span id="toggle-password" class="fas fa-eye-slash" onclick="togglePassword()"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="user_type" class="form-label label-custom">I want to...</label>
+                                <div class="input-group-custom">
+                                    <i class="fas fa-user-tag input-icon"></i>
+                                    <select required class="form-select signup-input ps-5" id="user_type" name="user_type">
+                                        <option value="app_user">Order Delicious Food (User)</option>
+                                        <option value="restaurant_owner">Grow My Business (Owner)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-signup w-100 py-3 fw-bold">
+                                Create My Account <i class="fas fa-user-plus ms-2 small"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <p class="text-muted">Already have an account? 
+                        <a href="{{ url_for('login') }}" class="text-orange fw-bold text-decoration-none hover-underline">Login here</a>
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add FontAwesome for the eye icon (or use your own icon library) -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+    function togglePassword() {
+        var passwordField = document.getElementById('password');
+        var toggleIcon = document.getElementById('toggle-password');
+
+        // Toggle password visibility
+        if (passwordField.type === "text") {
+            passwordField.type = "password";  // Hide the password
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        } else {
+            passwordField.type = "text";  // Show the password
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
+
+<style>
+    /* UI Foundation */
+    .auth-page-bg {
+        background: radial-gradient(circle at top right, rgba(255, 122, 0, 0.05), transparent),
+                    radial-gradient(circle at bottom left, rgba(255, 122, 0, 0.05), transparent);
+        background-color: #fcfcfc;
+        min-height: 90vh;
+    }
+
+    /* Card Styling */
+    .auth-card {
+        border-radius: 30px;
+        background: #ffffff;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .label-custom {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #6c757d;
+        margin-left: 4px;
+        margin-bottom: 8px;
+    }
+
+    /* Input Styling */
+    .input-group-custom { position: relative; }
+
+    .input-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #adb5bd;
+        z-index: 5;
+        transition: color 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .signup-input {
+        padding: 14px 20px;
+        background-color: #f8f9fa;
+        border: 2px solid #f8f9fa;
+        border-radius: 16px;
+        font-size: 0.95rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: #2d3436;
+    }
+
+    .input-group-custom .signup-input {
+        padding-left: 52px;
+    }
+
+    .signup-input:focus {
+        background-color: #ffffff;
+        border-color: #ff7a00;
+        box-shadow: 0 10px 20px rgba(255, 122, 0, 0.08);
+        outline: none;
+    }
+
+    .signup-input:focus + .input-icon {
+        color: #ff7a00;
+    }
+
+    /* Toggle Icon Positioning */
+    #toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    /* Select Specific Styles */
+    .form-select.signup-input {
+        background-position: right 1rem center;
+        cursor: pointer;
+    }
+
+    /* Button Styling */
+    .btn-signup {
+        background-color: #ff7a00;
+        border: none;
+        color: white;
+        border-radius: 16px;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 20px rgba(255, 122, 0, 0.2);
+    }
+
+    .btn-signup:hover {
+        background-color: #e66e00;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(255, 122, 0, 0.3);
+        color: white;
+    }
+
+    /* Utilities */
+    .hover-underline:hover {
+        text-decoration: underline !important;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 576px) {
+        .auth-card { border-radius: 20px; }
+        .p-md-5 { padding: 1.5rem !important; }
+    }
+</style>
+{% endblock %}

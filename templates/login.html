@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Feast AI{% endblock %}
+
+{% block content %}
+<div class="auth-page-bg d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 col-xl-4">
+                
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold h1"><span class="text-white bg-orange px-2 rounded-3">Feast</span> AI</h2>
+                    <p class="text-muted mt-3 fw-medium">Welcome back! Let's get you fed.</p>
+                </div>
+
+                {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <div class="alert alert-danger border-0 shadow-sm rounded-4 mb-4 small animate-fade-in">
+                      <ul class="mb-0 ps-3">
+                        {% for message in messages %}
+                          {% if "email" in message or "password" in message %}
+                            <li>{{ message }}</li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                {% endwith %}
+
+                <div class="card auth-card border-0">
+                    <div class="card-body p-4 p-md-5">
+                        <form action="/login" method="POST">
+                            <div class="mb-4">
+                                <label for="email" class="form-label label-custom">Email Address</label>
+                                <div class="input-group-custom">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input required type="email" class="form-control login-input" id="email" name="email" placeholder="name@example.com">
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <label for="password" class="form-label label-custom mb-0">Password</label>
+                                    <a href="#" class="text-decoration-none small text-orange fw-bold">Forgot?</a>
+                                </div>
+                                <div class="input-group-custom">
+                                    <i class="fas fa-lock input-icon"></i>
+                                    <input required type="text" class="form-control login-input" id="password" name="password" placeholder="••••••••">
+                                    <!-- Toggle icon -->
+                                    <span id="toggle-password" class="fas fa-eye-slash" onclick="togglePassword()"></span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-login w-100 py-3 fw-bold">
+                                Sign In <i class="fas fa-chevron-right ms-2 small"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <p class="text-muted">New to Feast AI? 
+                        <a href="{{ url_for('create_account') }}" class="text-orange fw-bold text-decoration-none hover-underline">Create an account</a>
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add FontAwesome for the eye icon (or use your own icon library) -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<script>
+    function togglePassword() {
+        var passwordField = document.getElementById('password');
+        var toggleIcon = document.getElementById('toggle-password');
+
+        // Toggle password visibility
+        if (passwordField.type === "text") {
+            passwordField.type = "password";  // Hide the password
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        } else {
+            passwordField.type = "text";  // Show the password
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
+
+<style>
+    /* UI Foundation */
+    .auth-page-bg {
+        background: radial-gradient(circle at top right, rgba(255, 122, 0, 0.05), transparent),
+                    radial-gradient(circle at bottom left, rgba(255, 122, 0, 0.05), transparent);
+        background-color: #fcfcfc;
+        min-height: 85vh;
+        padding: 60px 0;
+    }
+
+    /* Card Styling */
+    .auth-card {
+        border-radius: 30px;
+        background: #ffffff;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .label-custom {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #6c757d;
+        margin-left: 4px;
+    }
+
+    /* Modern Input Styling */
+    .input-group-custom {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #adb5bd;
+        z-index: 5;
+        transition: color 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .login-input {
+        padding: 16px 20px 16px 52px;
+        background-color: #f8f9fa;
+        border: 2px solid #f8f9fa;
+        border-radius: 16px;
+        font-size: 0.95rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        color: #2d3436;
+    }
+
+    .login-input::placeholder {
+        color: #adb5bd;
+        font-weight: 400;
+    }
+
+    .login-input:focus {
+        background-color: #ffffff;
+        border-color: #ff7a00;
+        box-shadow: 0 10px 20px rgba(255, 122, 0, 0.08);
+        outline: none;
+    }
+
+    .login-input:focus + .input-icon {
+        color: #ff7a00;
+    }
+
+    /* Toggle Icon Positioning */
+    #toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    /* Button Styling */
+    .btn-login {
+        background-color: #ff7a00;
+        border: none;
+        color: white;
+        border-radius: 16px;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 20px rgba(255, 122, 0, 0.2);
+    }
+
+    .btn-login:hover {
+        background-color: #e66e00;
+        transform: translateY(-3px);
+        box-shadow: 0 15px 25px rgba(255, 122, 0, 0.3);
+        color: white;
+    }
+
+    .btn-login:active {
+        transform: translateY(-1px);
+    }
+
+    /* Utilities */
+    .hover-underline:hover {
+        text-decoration: underline !important;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 576px) {
+        .auth-card {
+            border-radius: 20px;
+        }
+        .p-md-5 {
+            padding: 1.5rem !important;
+        }
+    }
+</style>
+{% endblock %}

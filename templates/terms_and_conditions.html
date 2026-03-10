@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %}Terms & Conditions - Feast AI{% endblock %}
+
+{% block content %}
+<div class="legal-page-bg py-5">
+    <div class="container">
+        
+        <div class="text-center mb-5 mt-4">
+            <div class="d-inline-flex align-items-center bg-white border rounded-pill px-3 py-1 mb-3 shadow-sm">
+                <span class="dot-indicator me-2"></span>
+                <span class="text-muted small fw-bold text-uppercase tracking-wider">Legal Framework v2.0</span>
+            </div>
+            <h1 class="display-5 fw-bold mb-3">Terms of <span class="text-orange-gradient">Service</span></h1>
+            <p class="text-muted mx-auto lead" style="max-width: 700px;">
+                Our goal is to make food delivery seamless. These terms protect your rights and help us maintain a high-quality service for Dhaka's food community.
+            </p>
+        </div>
+
+        <div class="row g-4 mb-5 justify-content-center text-center">
+            <div class="col-6 col-md-3">
+                <div class="summary-box">
+                    <i class="fas fa-user-check mb-2"></i>
+                    <h6>Be Honest</h6>
+                    <p class="small text-muted mb-0">Use accurate info</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="summary-box">
+                    <i class="fas fa-heart mb-2"></i>
+                    <h6>Be Respectful</h6>
+                    <p class="small text-muted mb-0">No fraud or spam</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="summary-box">
+                    <i class="fas fa-shield-alt mb-2"></i>
+                    <h6>Secure Play</h6>
+                    <p class="small text-muted mb-0">Protect your login</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="terms-grid">
+                    
+                    <div class="terms-tile p-4 p-md-5 mb-4">
+                        <div class="row">
+                            <div class="col-md-4 mb-3 mb-md-0 border-end-md">
+                                <span class="tile-number text-orange">01</span>
+                                <h4 class="fw-bold">Introduction</h4>
+                                <p class="small text-muted">The basics of our agreement.</p>
+                            </div>
+                            <div class="col-md-8 ps-md-5">
+                                <p class="terms-text">These Terms & Conditions govern your use of the Feast AI website and services. By accessing our platform, you agree to comply with these terms. If you do not agree, please refrain from using our services.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terms-tile p-4 p-md-5 mb-4">
+                        <div class="row">
+                            <div class="col-md-4 mb-3 mb-md-0 border-end-md">
+                                <span class="tile-number text-orange">02</span>
+                                <h4 class="fw-bold">Your Account</h4>
+                                <p class="small text-muted">Management & Security.</p>
+                            </div>
+                            <div class="col-md-8 ps-md-5">
+                                <p class="terms-text">You are responsible for maintaining the confidentiality of your account. You agree to:</p>
+                                <div class="check-item"><i class="fas fa-check-circle me-2"></i> Provide accurate registration data.</div>
+                                <div class="check-item"><i class="fas fa-check-circle me-2"></i> Notify us of unauthorized access.</div>
+                                <div class="check-item"><i class="fas fa-check-circle me-2"></i> Keep contact details updated.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terms-tile p-4 p-md-5 mb-4">
+                        <div class="row">
+                            <div class="col-md-4 mb-3 mb-md-0 border-end-md">
+                                <span class="tile-number text-orange">03</span>
+                                <h4 class="fw-bold">Rules of Conduct</h4>
+                                <p class="small text-muted">Keeping Dhaka safe.</p>
+                            </div>
+                            <div class="col-md-8 ps-md-5">
+                                <p class="terms-text">To keep our community safe, you may not use our website for unlawful activities, including:</p>
+                                <div class="prohibit-box d-flex flex-wrap gap-2">
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-times me-1 text-danger"></i> Fraud</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-times me-1 text-danger"></i> Identity Theft</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-times me-1 text-danger"></i> Phishing</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-times me-1 text-danger"></i> Server Interference</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="terms-tile p-4 p-md-5 mb-4 footer-highlight">
+                        <div class="row">
+                            <div class="col-md-4 mb-3 mb-md-0 border-end-md">
+                                <span class="tile-number text-white">04</span>
+                                <h4 class="fw-bold text-white">Liability</h4>
+                                <p class="small text-light opacity-75">Scope of service.</p>
+                            </div>
+                            <div class="col-md-8 ps-md-5">
+                                <p class="terms-text text-white opacity-90">Feast AI acts as a platform to connect you with restaurants. We are not liable for any damages arising from the use of our services, including issues regarding food quality provided by independent restaurant partners.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-5">
+                    <p class="text-muted">By clicking "Back Home", you acknowledge you have read these terms.</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ url_for('home') }}" class="btn btn-dark rounded-pill px-5 py-2 fw-bold">Accept & Exit</a>
+                        <a href="mailto:support@feastai.com" class="btn btn-outline-orange rounded-pill px-5 py-2">Help Center</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* UI Fundamentals */
+    .legal-page-bg { background-color: #fbfbfd; min-height: 100vh; }
+    .text-orange-gradient {
+        background: linear-gradient(90deg, #ff7a00, #ffb347);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Summary Section */
+    .summary-box {
+        background: white;
+        padding: 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(0,0,0,0.05);
+        transition: 0.3s ease;
+    }
+    .summary-box i { font-size: 1.5rem; color: #ff7a00; display: block; }
+    .summary-box h6 { font-weight: 700; margin-top: 5px; }
+
+    /* Terms Tile Layout */
+    .terms-tile {
+        background: white;
+        border-radius: 30px;
+        border: 1px solid rgba(0,0,0,0.04);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .terms-tile:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    }
+
+    .tile-number {
+        font-family: 'Georgia', serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        opacity: 0.15;
+        display: block;
+        margin-bottom: -15px;
+    }
+
+    .border-end-md { border-right: 1px solid #f1f3f5; }
+
+    /* Text & Lists */
+    .terms-text { line-height: 1.9; color: #57606f; font-size: 1.05rem; }
+    
+    .check-item {
+        margin-bottom: 10px;
+        color: #57606f;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+    }
+    .check-item i { color: #2ecc71; font-size: 1.1rem; }
+
+    /* Footer Special Card */
+    .footer-highlight {
+        background: #1e272e;
+        border: none;
+    }
+    .footer-highlight .tile-number { opacity: 0.3; color: white !important; }
+
+    /* Buttons & Indicators */
+    .btn-outline-orange {
+        border: 2px solid #ff7a00;
+        color: #ff7a00;
+        font-weight: bold;
+    }
+    .btn-outline-orange:hover {
+        background: #ff7a00;
+        color: white;
+    }
+
+    .dot-indicator {
+        width: 8px;
+        height: 8px;
+        background: #ff7a00;
+        border-radius: 50%;
+        display: inline-block;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.4; }
+        100% { opacity: 1; }
+    }
+
+    @media (max-width: 767px) {
+        .border-end-md { border-right: none; border-bottom: 1px solid #f1f3f5; padding-bottom: 20px; }
+        .terms-tile { border-radius: 20px; }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}

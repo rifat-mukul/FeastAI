@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Feast AI{% endblock %}
+
+{% block content %}
+<div class="contact-wrapper">
+    <div class="bg-shape circle-1"></div>
+    <div class="bg-shape circle-2"></div>
+
+    <div class="container py-5 position-relative">
+        <div class="row g-0 main-container shadow-2xl rounded-5 overflow-hidden">
+            
+            <div class="col-lg-5 contact-sidebar p-4 p-md-5 text-white d-flex flex-column justify-content-between">
+                <div>
+                    <span class="badge rounded-pill bg-glass mb-3">Support 24/7</span>
+                    <h1 class="display-5 fw-bold mb-4">Let's <span class="text-orange-light">Talk</span></h1>
+                    <p class="opacity-75 mb-5">Have a craving for information? Our team is cooking up answers for you.</p>
+
+                    <div class="contact-methods">
+                        <div class="method-item mb-4">
+                            <div class="method-icon"><i class="fas fa-paper-plane"></i></div>
+                            <div>
+                                <small class="d-block opacity-50 text-uppercase ls-1">Email</small>
+                                <span class="fw-600">hello@feastai.com</span>
+                            </div>
+                        </div>
+
+                        <div class="method-item mb-4">
+                            <div class="method-icon"><i class="fas fa-headset"></i></div>
+                            <div>
+                                <small class="d-block opacity-50 text-uppercase ls-1">Hotline</small>
+                                <span class="fw-600">+880 123 456 789</span>
+                            </div>
+                        </div>
+
+                        <div class="method-item mb-4">
+                            <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <small class="d-block opacity-50 text-uppercase ls-1">Headquarters</small>
+                                <span class="fw-600">Gulshan-2, Dhaka, Bangladesh</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-footer">
+                    <p class="small text-uppercase ls-2 opacity-50 mb-3">Connect with us</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-glass-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-glass-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-glass-btn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 bg-white p-4 p-md-5">
+                <div class="form-header mb-4">
+                    <h3 class="fw-bold">Send a Message</h3>
+                    <p class="text-muted small">Expect a response within 2 business hours.</p>
+                </div>
+
+                {% if message_sent %}
+                <div class="alert alert-orange-light border-0 rounded-4 py-3 mb-4 slide-in" role="alert">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-circle bg-orange text-white me-3"><i class="fas fa-check"></i></div>
+                        <div>
+                            <p class="mb-0 fw-bold">Order Received!</p>
+                            <small>We'll get back to you shortly.</small>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <form action="/contact" method="POST" class="needs-validation">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="floating-group">
+                                <input type="text" class="form-control modern-input" id="name" name="name" placeholder=" " required>
+                                <label for="name">Full Name</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="floating-group">
+                                <input type="email" class="form-control modern-input" id="email" name="email" placeholder=" " required>
+                                <label for="email">Email Address</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="floating-group">
+                                <select class="form-select modern-input" id="subject" name="subject">
+                                    <option value="general">General Inquiry</option>
+                                    <option value="partnership">Restaurant Partnership</option>
+                                    <option value="order">Order Support</option>
+                                    <option value="tech">Technical Issue</option>
+                                </select>
+                                <label for="subject">Subject</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="floating-group">
+                                <textarea class="form-control modern-input" id="message" name="message" rows="4" placeholder=" " required></textarea>
+                                <label for="message">How can we help you?</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-orange-action w-100 py-3 rounded-4 shadow-lg fw-bold mt-2">
+                                Launch Message <i class="fas fa-paper-plane ms-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+    :root {
+        --brand-dark: #12141d;
+        --orange-main: #ff7a00;
+        --orange-soft: #ffca28;
+    }
+
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #f0f2f5;
+        overflow-x: hidden;
+    }
+
+    .contact-wrapper {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    /* Background Shapes */
+    .bg-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: 0;
+        opacity: 0.4;
+    }
+    .circle-1 { width: 400px; height: 400px; background: var(--orange-soft); top: -100px; left: -100px; }
+    .circle-2 { width: 300px; height: 300px; background: #ff7a00; bottom: -50px; right: -50px; }
+
+    .main-container {
+        z-index: 1;
+        position: relative;
+        background: #fff;
+    }
+
+    /* Sidebar Styling */
+    .contact-sidebar {
+        background: linear-gradient(135deg, #1a1c25 0%, #12141d 100%);
+        position: relative;
+    }
+
+    .bg-glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .text-orange-light { color: var(--orange-soft); }
+
+    .method-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .method-icon {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 122, 0, 0.15);
+        color: var(--orange-main);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+
+    /* Floating Label Inputs */
+    .floating-group {
+        position: relative;
+    }
+
+    .modern-input {
+        border: 1.5px solid #e9ecef;
+        padding: 1rem 1rem;
+        border-radius: 12px;
+        background: #fcfcfd;
+        transition: all 0.3s ease;
+    }
+
+    .modern-input:focus {
+        border-color: var(--orange-main);
+        box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.1);
+        background: #fff;
+    }
+
+    .floating-group label {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        padding: 0 4px;
+        color: #94a3b8;
+        pointer-events: none;
+        transition: all 0.2s ease;
+    }
+
+    .modern-input:focus ~ label,
+    .modern-input:not(:placeholder-shown) ~ label {
+        top: -10px;
+        left: 12px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--orange-main);
+        background: #fff;
+    }
+
+    /* Buttons */
+    .btn-orange-action {
+        background: linear-gradient(45deg, #ff7a00, #ff9500);
+        color: white;
+        border: none;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-orange-action:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(255, 122, 0, 0.3);
+        color: white;
+    }
+
+    .social-glass-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .social-glass-btn:hover {
+        background: var(--orange-main);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .ls-1 { letter-spacing: 1px; }
+    .ls-2 { letter-spacing: 2px; }
+    .fw-600 { font-weight: 600; }
+
+    /* Animations */
+    .slide-in {
+        animation: slideUp 0.5s ease-out;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 991px) {
+        .contact-sidebar { border-radius: 0; }
+        .main-container { border-radius: 20px; margin: 10px; }
+    }
+</style>
+{% endblock %}
